@@ -1,8 +1,8 @@
 import React from 'react';
 
-function PopupWithForm({
-  name, title, children, onSubmit, textSubmitBtn,
-}) {
+function PopupWithForm(props){
+  const { name, title, children, onSubmit, textSubmitBtn, } = props;
+  
   return (
       <form
         className={`popup__content popup__content_theme_${name}`}
