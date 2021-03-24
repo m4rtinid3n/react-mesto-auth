@@ -1,15 +1,20 @@
 import React from 'react';
+import Popup from './Popup';
 
 function PopupWithForm(props){
-  const { name, isOpen, title, children, onSubmit, textSubmitBtn, } = props;
+  const { name, title, children, onSubmit, textSubmitBtn, isOpen, onClose, } = props;
   
   return (
-    <div className={`popup popup_${name} ${isOpen ? 'popup_opened' : ''}`}>
+    <Popup 
+    name="popup__container"
+    isOpen={isOpen}
+    onClose={onClose}
+    >
       <form
-        className={`popup__content popup__content_theme_${name}`}
-        noValidate
-        onSubmit={onSubmit}
-      >
+      className={`popup__content popup__content_theme_${name}`}
+      noValidate
+      onSubmit={onSubmit}
+    >
         <h2 className="popup__title popup__title_theme_profile">{title}</h2>
         <div className="popup__fields">
           {children}
@@ -18,7 +23,7 @@ function PopupWithForm(props){
           </button>
         </div>
       </form>
-    </div>
+    </Popup>
   );
 }
 
