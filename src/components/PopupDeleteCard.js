@@ -1,33 +1,27 @@
-import React, { useContext } from 'react';
-import Popup from './Popup';
-import PopupWithForm from './PopupWithForm';
-import { TextForSubmitBtn } from '../contexts/TextForSubmitBtn';
+import React, {useContext} from "react";
+import PopupWithForm from './PopupWithForm'
+import { TextForSubmitBtn } from "../contexts/TextForSubmitBtn";
 
-export const PopupDeleteCard = ({
-  card, isOpen, onClose, onCardDelete,
-}) => {
+export const PopupDeleteCard = ({card, isOpen, onClose, onCardDelete}) => {
   const textForSubmitBtn = useContext(TextForSubmitBtn);
 
   const handleDeleteClick = (e) => {
     e.preventDefault();
     onCardDelete(card);
-  };
+  }
 
   return (
-    <Popup
+    <PopupWithForm
       name="card-delete popup__title_theme_card-delete"
+      title="Вы уверены?"
       isOpen={isOpen}
       onClose={onClose}
+      onSubmit={handleDeleteClick}
+      textSubmitBtn={textForSubmitBtn.confirm}
     >
-      <PopupWithForm
-        title="Вы уверены?"
-        onSubmit={handleDeleteClick}
-        textSubmitBtn={textForSubmitBtn.confirm}
-      >
-        <label className="popup__field">
-          <span className="popup__error"></span>
-        </label>
-      </PopupWithForm>
-    </Popup>
+      <label className="popup__field">
+        <span className="popup__error"></span>
+      </label>
+    </PopupWithForm>
   );
-};
+}
